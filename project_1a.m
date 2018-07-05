@@ -17,7 +17,7 @@ for eitr = 1:length(EbN0)
         a=rand>0.5;%sourse bit generation
         d = 1-2*a;%BPSK modulation
         rd = ones(1,32)*d;%resample
-        md = A*cos(2*pi*ii*f0/fs);
+        md = A*cos(2*pi*(ii-1)*f0/fs);
         s = rd.*md;%transmit signal
         %through channel
         noise_var = 0.25*frs/(10^(0.1*EbN0(eitr)));
