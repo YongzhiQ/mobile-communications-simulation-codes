@@ -10,14 +10,15 @@ frs = fs/rs;
 nFrame=100000;
 EbN0 = 0:1:10;
 B = zeros(length(EbN0),nFrame);
-ii = 1:n;
+ii = 0:n-1;
+timeOffset = 0;
 %run simulation loop
 for eitr = 1:length(EbN0)
     for itr=1:nFrame
         a=rand>0.5;%sourse bit generation
         d = 1-2*a;%BPSK modulation
         rd = ones(1,32)*d;%resample
-        md = A*cos(2*pi*(ii-1)*f0/fs);
+        md = A*cos(2*pi*(ii + timeOffset)*f0/fs);
         s = rd.*md;%transmit signal
         %through channel
         noise_var = 0.25*frs/(10^(0.1*EbN0(eitr)));
