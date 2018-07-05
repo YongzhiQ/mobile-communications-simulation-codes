@@ -1,7 +1,7 @@
 clear
 clc
 %simulation parameter setting
-N = 64;
+N = 128;
 nFrame=10000;
 EbN0 = 0:10;
 B = zeros(length(EbN0),nFrame);
