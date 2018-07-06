@@ -12,10 +12,11 @@ for eitr = 1:length(EbN0)
         d = 1 - 2 * a;%BPSK modulation
         s = ifft(d);%transmit signal
         %through channel
-%         noise_var = 1*frs/(2*10^(0.1*EbN0(eitr)));
-%         white_noise = (rand(1,n)-0.5)*sqrt(12*noise_var);
-%         r = s + white_noise;
-        r = awgn(s,EbN0(eitr),'measured');% add noise to the signal
+        noise_var = 1/(N*2*10^(0.1*EbN0(eitr)));
+        white_noise = (rand(1,N)-0.5)*sqrt(12*noise_var);
+        white_noise1 = (rand(1,N)-0.5)*sqrt(12*noise_var);
+        r = real(s) + white_noise+i*(imag(s) + white_noise1);
+%         r = awgn(s,EbN0(eitr),'measured');% add noise to the signal
       
         %receiver
         ss = fft(r);
