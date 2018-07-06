@@ -17,7 +17,7 @@ for eitr = 1:length(EbN0)
         noise_var = 1/(N*2*10^(0.1*EbN0(eitr)));
         white_noise = (rand(1,N/md)-0.5)*sqrt(12*noise_var);
         white_noise1 = (rand(1,N/md)-0.5)*sqrt(12*noise_var);
-        r = real(s) + white_noise+i*(imag(s) + white_noise1);
+        r = real(s) + white_noise + 1i*(imag(s) + white_noise1);
 %         r = awgn(s,EbN0(eitr)+3,'measured');% add noise to the signal
         %+3 for S/N = 2Eb/N0
         %receiver
